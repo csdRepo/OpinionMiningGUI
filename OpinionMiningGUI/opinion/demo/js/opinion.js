@@ -63,9 +63,9 @@ function requestFromServer() {
         if (xmlhttp.status==200){
             document.getElementById("responseText").innerHTML = xmlhttp.responseText;
         }
-        else{
-            alert("An Error Happened!");
-        }
+        // else{
+        //     alert("An Error Happened!");
+        // }
     }
 
     xmlhttp.open("POST",url,true);
