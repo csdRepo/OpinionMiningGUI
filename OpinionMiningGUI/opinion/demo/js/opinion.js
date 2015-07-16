@@ -28,6 +28,9 @@ function change(el){
 
 }
 
+
+
+
 function enableBTN(){
 
     var elements = document.getElementsByName("btn");
