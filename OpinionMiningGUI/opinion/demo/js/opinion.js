@@ -48,29 +48,27 @@ function requestFromServer() {
 
     console.log("in requestfromserver function...");
 
-    // var url = "http://localhost:8000/classify";
-    // var data = document.getElementById("textToSubmit").value;
-    //
-    // var xmlhttp;
-    // if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-    //     xmlhttp=new XMLHttpRequest();
-    // }
-    // else{// code for IE6, IE5
-    //     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    // }
-    //
-    // xmlhttp.onreadystatechange=function(){
-    //     if (xmlhttp.status==200){
-    //
-    //         // var responseText = xmlhttp.responseText.split("\"{\"").join("{\"");
-    //         // responseText = responseText.split("\"{").join("{");
-    //         // responseText = responseText.split("\"}").join("}");
-    //
-    //         document.getElementById("responseText").innerHTML = xmlhttp.responseText;
-    //     }
-    // }
-    //
-    // xmlhttp.open("POST",url,true);
-    // xmlhttp.setRequestHeader("Content-Type", "text/plain");
-    // xmlhttp.send(data);
+    var url = "http://localhost:8000/classify";
+    var data = document.getElementById("textToSubmit").value;
+
+    var xmlhttp;
+    if (window.XMLHttpRequest){ // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else{ // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange=function(){
+        if (xmlhttp.status==200){
+            document.getElementById("responseText").innerHTML = xmlhttp.responseText;
+        }
+        else{
+            alert("An Error Happened!");
+        }
+    }
+
+    xmlhttp.open("POST",url,true);
+    xmlhttp.setRequestHeader("Content-Type", "text/plain");
+    xmlhttp.send(data);
 }
