@@ -36,22 +36,22 @@ function show_sentences (response) {
 	obj = JSON.parse(response);
 	var sentnces= obj.arguments.sentences.length;
 	var sentiment= obj.opinion.sentiment;
-    // an einai neutral to theorw oti einai neg  ? 
+    // an einai neutral to theorw oti einai neg  ?
 	if(sentiment.search("\"label\": \"pos\"}")!= -1){
-		document.getElementById('sentiment').className="btn btn-success";	
+		document.getElementById('sentiment').className="btn btn-success";
 	}
-	
+
 	// // document.getElementById("responseText").innerHTML=obj.arguments.sentences[0].s1;
 	// // document.getElementById("responseText").innerHTML=obj.opinion.sentiment.search("\"label\": \"neutral\"}");
 	// // var n=sentiment.search("\"label\": \"neutral\"}").localCompare("-1");
-	
+
 	// // search("\"label\": \"neutral\"}");
     for (var i=0; i<obj.arguments.sentences.length; i++){
         // document.getElementById("sentences_show").innerHTML = obj.arguments.sentences.length;
 		// var s = "s"+1;
 		var arg_class= "btn btn-danger";
 		var sugg_class= "btn btn-danger";
-		
+
 		// ocument.getElementById("responseText").innerHTML = i;
     	if (obj.arguments.sentences[i].s.search("yes")!=-1){
 
@@ -74,7 +74,7 @@ function show_sentences (response) {
        document.getElementById('sentences_show').insertBefore(div,document.getElementById("imp"));
 	}
 
-												  
+
 }
 function enableBTN(){
 
@@ -110,10 +110,11 @@ function requestFromServer() {
     var response;
     xmlhttp.onreadystatechange=function(){
 
-        if (xmlhttp.status==200){
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
         	response = xmlhttp.responseText;
-        	obj = JSON.parse(response);       			
+        	obj = JSON.parse(response);
        	    document.getElementById("responseText").innerHTML= response;
+
        	    show_sentences(response);
         }
 
@@ -126,4 +127,3 @@ function requestFromServer() {
     xmlhttp.setRequestHeader("Content-Type", "text/plain");
     xmlhttp.send(data);
 }
-
