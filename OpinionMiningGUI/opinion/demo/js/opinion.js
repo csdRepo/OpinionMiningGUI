@@ -28,7 +28,54 @@ function change(el){
 
 }
 
+function show_sentences (response) {
+	// body...
 
+	//kanei collapse
+	document.getElementById('sentences_show').style.display="";
+	obj = JSON.parse(response);
+	var sentnces= obj.arguments.sentences.length;
+	var sentiment= obj.opinion.sentiment;
+    // an einai neutral to theorw oti einai neg  ? 
+	if(sentiment.search("\"label\": \"pos\"}")!= -1){
+		document.getElementById('sentiment').className="btn btn-success";	
+	}
+	
+	// // document.getElementById("responseText").innerHTML=obj.arguments.sentences[0].s1;
+	// // document.getElementById("responseText").innerHTML=obj.opinion.sentiment.search("\"label\": \"neutral\"}");
+	// // var n=sentiment.search("\"label\": \"neutral\"}").localCompare("-1");
+	
+	// // search("\"label\": \"neutral\"}");
+    for (var i=0; i<obj.arguments.sentences.length; i++){
+        // document.getElementById("sentences_show").innerHTML = obj.arguments.sentences.length;
+		// var s = "s"+1;
+		var arg_class= "btn btn-danger";
+		var sugg_class= "btn btn-danger";
+		document.getElementById("responseText").innerHTML = obj.arguments.sentences[i].s;
+		// ocument.getElementById("responseText").innerHTML = i;
+    	if (obj.arguments.sentences[i].s.search("yes")!=-1){
+
+    		arg_class="brn btn-success";
+    	}
+
+    	if (obj.suggestions.sentences[i].s.search("yes")!= -1){
+    		sugg_class="btn btn-success";
+    	}
+		var div = document.createElement('div');
+		// div.className='row';
+		div.innerHTML= '<label>'+"sentence "+i+'</label>\
+                                            <input class="form-control" disabled>\
+                                            <p></p>\
+                                            <button type="button" class="'+arg_class+'" name="btn" onclick="change(this)" disabled>Argumentative</button>\
+                                            <button type="button" class="'+sugg_class+'"name="btn" onclick="change(this)" disabled>Suggestion</button>\
+                                            <p></p>\
+                                            </p>';
+       // document.getElementById("responseText").innerHTML = obj.arguments.sentences.length;
+       document.getElementById('sentences_show').insertBefore(div,document.getElementById("imp"));
+	}
+
+												  
+}
 function enableBTN(){
 
     var elements = document.getElementsByName("btn");
@@ -44,6 +91,8 @@ function submitTrain() {
     alert("bravo malaka to ekanes SUBMIThgfhfghfg");
 }
 
+
+
 function requestFromServer() {
 
     console.log("in requestfromserver function...");
@@ -58,11 +107,18 @@ function requestFromServer() {
     else{ // code for IE6, IE5
         xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
     }
-
+    var response;
     xmlhttp.onreadystatechange=function(){
+
         if (xmlhttp.status==200){
-            document.getElementById("responseText").innerHTML = xmlhttp.responseText;
+        	response = xmlhttp.responseText;
+        	obj = JSON.parse(response);       			
+       			
+       	    show_sentences(response);
+
+
         }
+
         // else{
         //     alert("An Error Happened!");
         // }
@@ -72,3 +128,4 @@ function requestFromServer() {
     xmlhttp.setRequestHeader("Content-Type", "text/plain");
     xmlhttp.send(data);
 }
+
