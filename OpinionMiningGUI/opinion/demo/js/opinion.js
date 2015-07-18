@@ -51,7 +51,7 @@ function show_sentences (response) {
 		// var s = "s"+1;
 		var arg_class= "btn btn-danger";
 		var sugg_class= "btn btn-danger";
-		document.getElementById("responseText").innerHTML = obj.arguments.sentences[i].s;
+
 		// ocument.getElementById("responseText").innerHTML = i;
     	if (obj.arguments.sentences[i].s.search("yes")!=-1){
 
@@ -110,9 +110,10 @@ function requestFromServer() {
     var response;
     xmlhttp.onreadystatechange=function(){
 
-        if (xmlhttp.status==200){
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
         	response = xmlhttp.responseText;
         	obj = JSON.parse(response);
+       	    document.getElementById("responseText").innerHTML= response;
 
        	    show_sentences(response);
 
