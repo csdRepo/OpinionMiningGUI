@@ -55,7 +55,7 @@ function show_sentences (response) {
 		// ocument.getElementById("responseText").innerHTML = i;
     	if (obj.arguments.sentences[i].s.search("yes")!=-1){
 
-    		arg_class="brn btn-success";
+    		arg_class="btn btn-success";
     	}
 
     	if (obj.suggestions.sentences[i].s.search("yes")!= -1){
@@ -66,7 +66,7 @@ function show_sentences (response) {
 		div.innerHTML= '<label>'+"sentence "+i+'</label>\
                                             <input class="form-control" disabled>\
                                             <p></p>\
-                                            <button type="button" class="'+arg_class+'" name="btn" onclick="change(this)" disabled>Argumentative</button>\
+                                            <button type="button" class="'+arg_class+'"name="btn" onclick="change(this)" disabled>Argumentative</button>\
                                             <button type="button" class="'+sugg_class+'"name="btn" onclick="change(this)" disabled>Suggestion</button>\
                                             <p></p>\
                                             </p>';
@@ -115,8 +115,6 @@ function requestFromServer() {
         	obj = JSON.parse(response);       			
        	    document.getElementById("responseText").innerHTML= response;
        	    show_sentences(response);
-
-
         }
 
         // else{
