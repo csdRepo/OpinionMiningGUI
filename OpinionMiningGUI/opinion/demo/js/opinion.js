@@ -30,8 +30,11 @@ function change(el){
 
 function show_sentences (response) {
 	// body...
-
+    // document.getElementById("sentences_show").removeChild(document.getElementById("sentence"));
 	//kanei collapse
+	while (document.contains(document.getElementById("sentence"))) {
+            document.getElementById("sentence").remove();
+	} 
 	document.getElementById('sentences_show').style.display="";
 	obj = JSON.parse(response);
 	var sentnces= obj.arguments.sentences.length;
@@ -39,20 +42,13 @@ function show_sentences (response) {
     // an einai neutral to theorw oti einai neg  ?
 	if(sentiment.search("\"label\": \"pos\"}")!= -1){
 		document.getElementById('sentiment').className="btn btn-success";
+		document.getElementById('sentiment').innerHTML="Positive";
 	}
 
-	// // document.getElementById("responseText").innerHTML=obj.arguments.sentences[0].s1;
-	// // document.getElementById("responseText").innerHTML=obj.opinion.sentiment.search("\"label\": \"neutral\"}");
-	// // var n=sentiment.search("\"label\": \"neutral\"}").localCompare("-1");
 
-	// // search("\"label\": \"neutral\"}");
     for (var i=0; i<obj.arguments.sentences.length; i++){
-        // document.getElementById("sentences_show").innerHTML = obj.arguments.sentences.length;
-		// var s = "s"+1;
 		var arg_class= "btn btn-danger";
 		var sugg_class= "btn btn-danger";
-
-		// ocument.getElementById("responseText").innerHTML = i;
     	if (obj.arguments.sentences[i].s.search("yes")!=-1){
 
     		arg_class="btn btn-success";
@@ -62,7 +58,7 @@ function show_sentences (response) {
     		sugg_class="btn btn-success";
     	}
 		var div = document.createElement('div');
-		// div.className='row';
+		div.id='sentence';
 		div.innerHTML= '<label>'+"sentence "+i+'</label>\
                                             <input class="form-control" disabled>\
                                             <p></p>\
@@ -70,7 +66,6 @@ function show_sentences (response) {
                                             <button type="button" class="'+sugg_class+'"name="btn" onclick="change(this)" disabled>Suggestion</button>\
                                             <p></p>\
                                             </p>';
-       // document.getElementById("responseText").innerHTML = obj.arguments.sentences.length;
        document.getElementById('sentences_show').insertBefore(div,document.getElementById("imp"));
 	}
 
