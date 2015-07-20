@@ -59,7 +59,7 @@ function show_sentences (response) {
     	}
 		var div = document.createElement('div');
 		div.id='sentence';
-		div.innerHTML= '<label>'+"sentence "+i+'</label>\
+		div.innerHTML= '<label>'+"Sentence "+ (i+1) + ":" +'</label>\
                                             <input class="form-control" disabled>\
                                             <p></p>\
                                             <button type="button" class="'+arg_class+'"name="btn" onclick="change(this)" disabled>Argumentative</button>\
@@ -112,10 +112,6 @@ function requestFromServer() {
 
        	    show_sentences(response);
         }
-
-        // else{
-        //     alert("An Error Happened!");
-        // }
     }
 
     xmlhttp.open("POST",url,true);
