@@ -34,7 +34,7 @@ function show_sentences (response) {
 	//kanei collapse
 	while (document.contains(document.getElementById("sentence"))) {
             document.getElementById("sentence").remove();
-	} 
+	}
 	document.getElementById('sentences_show').style.display="";
 	obj = JSON.parse(response);
 	var sentnces= obj.arguments.sentences.length;
