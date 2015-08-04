@@ -40,7 +40,7 @@ function show_sentences (response) {
 	var sentnces= obj.arguments.sentences.length;
 	var sentiment= obj.opinion.sentiment;
     // an einai neutral to theorw oti einai neg  ?
-	if(sentiment.search("\"label\": \"pos\"}")!= -1){
+	if(sentiment.search("\"label\": \"pos\"}")== -1){
 		document.getElementById('sentiment').className="btn btn-success";
 		document.getElementById('sentiment').innerHTML="Positive";
 	}
@@ -60,7 +60,7 @@ function show_sentences (response) {
 		var div = document.createElement('div');
 		div.id='sentence';
 		div.innerHTML= '<label>'+"Sentence "+ (i+1) + ":" +'</label>\
-                                            <input class="form-control" disabled>\
+                                            <input class="form-control" value="'+obj.doc_sentences[i].s+'" disabled>\
                                             <p></p>\
                                             <button type="button" class="'+arg_class+'"name="btn" onclick="change(this)" disabled>Argumentative</button>\
                                             <button type="button" class="'+sugg_class+'"name="btn" onclick="change(this)" disabled>Suggestion</button>\
@@ -83,7 +83,7 @@ function enableBTN(){
 }
 
 function submitTrain() {
-    alert("bravo malaka to ekanes SUBMIThgfhfghfg");
+    alert("Submit it!");
 }
 
 
@@ -108,7 +108,7 @@ function requestFromServer() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
         	response = xmlhttp.responseText;
         	obj = JSON.parse(response);
-       	    document.getElementById("responseText").innerHTML= response;
+       	    // document.getElementById("responseText").innerHTML= response;
 
        	    show_sentences(response);
         }
