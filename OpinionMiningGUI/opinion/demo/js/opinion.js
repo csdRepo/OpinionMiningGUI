@@ -92,7 +92,8 @@ function requestFromServer() {
 
     console.log("in requestfromserver function...");
 
-    var url = "http://localhost:8000/classify";
+    var url = "http://83.212.97.174:8000/classify";
+    // var url = "http://localhost:8000/classify";
     var data = document.getElementById("textToSubmit").value;
 
     var xmlhttp;
