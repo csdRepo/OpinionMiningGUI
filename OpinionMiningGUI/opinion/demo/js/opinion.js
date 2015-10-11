@@ -124,8 +124,8 @@ function generateMessageForTrain(){
 function submitTrain() {
     console.log("in submitTrain function...");
 
-    // var url = "http://83.212.97.174:8000/train";
-    var url = "http://localhost:8000/train";
+    var url = "http://83.212.97.174:8000/train";
+    // var url = "http://localhost:8000/train";
 
     generateMessageForTrain();
 
@@ -156,8 +156,10 @@ function requestFromServer() {
 
     console.log("in requestfromserver function...");
 
-    // var url = "http://83.212.97.174:8000/classify";
-    var url = "http://localhost:8000/classify";
+
+    var url = "http://83.212.97.174:8000/classify";
+    // var url = "http://localhost:8000/classify";
+
     var data = document.getElementById("textToSubmit").value;
 
     var xmlhttp;
